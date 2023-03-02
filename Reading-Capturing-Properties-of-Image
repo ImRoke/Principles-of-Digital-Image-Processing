@@ -7,8 +7,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "#improt the required modules\n",
-    "import cv2 as cv"
+        "import cv2"
    ]
   },
   {
