@@ -1,7 +1,8 @@
 
 import cv2
 
-# Reading an image
+# Reading an image by giving the exact file name
+# You can also read stored image in system by giving the address like C:/Users/username/...
 im = cv2.imread('goku3.jpeg')
 
 # Using '.shape' method, we will get to know the height, width and channels of the image
