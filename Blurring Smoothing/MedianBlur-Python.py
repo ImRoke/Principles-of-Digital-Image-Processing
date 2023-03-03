@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # Parse the command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('image_path', type=str, help='path to the input image')
-    parser.add_argument('kernel_size', type=int, nargs=2, help='kernel size for the custom average blur')
+    parser.add_argument('kernel_size', type=int, nargs=2, help='kernel size for the custom median blur')
     args = parser.parse_args()
 
     # Apply the custom average blur to the input image
