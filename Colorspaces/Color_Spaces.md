@@ -19,14 +19,16 @@ a set of numerical values that can be stored and processed by a computer. Follow
   * Primarly used in printing.
 
 ## HSV (Hue, Saturation, Value):
- 
+
+![alt text](https://learn.microsoft.com/en-us/windows/win32/wcs/images/hsvline.png)
+
  ### Hue:
  
   * The HSV color space plays a significant role in how humans perceive and distinguish colors. 
   * Hue is a color attribute that represents the pure color of an object or light source, as perceived by the human eye.
   * Hue represents color and can be calculated by knowing the color’s position on a color wheel.
   * Also represented as an angle around the color wheel. 
-  ![alt text](https://learn.microsoft.com/en-us/windows/win32/wcs/images/hsvline.png)
+  
  
 |  Color  |  Angle   |   
 | --------|:--------:| 
