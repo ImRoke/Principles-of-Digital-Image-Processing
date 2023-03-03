@@ -42,5 +42,5 @@ if __name__ == '__main__':
 
     
    
-# This will apply a custom average blur with a kernel size of 5x5 to the image  
+# This will apply a custom median blur with a kernel size of 5x5 to the image  
 python custom_median_blur.py goku3.jpeg 5 5
