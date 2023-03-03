@@ -33,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('kernel_size', type=int, nargs=2, help='kernel size for the custom median blur')
     args = parser.parse_args()
 
-    # Apply the custom average blur to the input image
+    # Apply the custom median blur to the input image
     blurred_image = custom_median_blur(args.image_path, tuple(args.kernel_size))
 
     # Show the blurred image
