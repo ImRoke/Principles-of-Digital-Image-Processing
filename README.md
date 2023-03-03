@@ -9,7 +9,11 @@ First things first, we should know What is Digital Image and then processing of 
 
 A digital image is a 2D representation of visual objects or scenes that are stored in digital form, typically as a series of numerical values. These are made up of a grid of square or rectangular area of uniform tiny picture elements called pixels, each of which is assigned a color or grayscale based on the format it has been stored (like 8 bit, 16 bit etc). The resolution of an image is determined by the number of pixels in the grid. 
 
-The higher the resolution, the more pixels it has, and the more detail that can be displayed in the image. Digital images are widely used in many fields, including photography, design, medical imaging, astronomy, security, engineering and science, among others. 
+The higher the resolution, the more pixels it has, and the more detail that can be displayed in the image. Digital images are widely used in many fields, including photography, design, medical imaging, astronomy, security, engineering, computer vision, autonomous vehicles and science, among others. 
+
+So, here I'm displaying the pixel values on left side and the image on the right side for better understanding.
+
+![alt text](https://github.com/ImRoke/Principles-of-Digital-Image-Processing/blob/main/DIP-Images/DIP2.png)
 
 ## Digital Image Processing (DIP)
 
@@ -17,17 +21,16 @@ DIP is a rapidly growing field and driven by the use of computer algorithms to e
 
 ### Steps involved in DIP
 
+The primary step will be the acquisition of image adn then analysis part comes into picture. Which includes the following steps:
+
   * Enhancement
-    > kafi vaivrv sdvsv dvudrv dvjndsfifrf vjv
+    > Image will be enhanced by adjusting its brightness, contrast, or color balance and or by reducing noise or blurring.
 
   * Restoration
-     >
+     > The degraded or distorted image can be brought back by removing artifacts, noise, and blur.
 
   * Segmentation
-     >
+     > Here the image will be divided into particular regions or objects based on the user requirements such as color, shape or texture.
 
   * Compression
-     >
-
-  * Object Recognition
-     >
+     > Image visual quality will be preserved by removing redundant or irrelevant informatoin while reducing the file size.
