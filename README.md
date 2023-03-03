@@ -15,4 +15,19 @@ The higher the resolution, the more pixels it has, and the more detail that can 
 
 DIP is a rapidly growing field and driven by the use of computer algorithms to enhance, restore and extract information from the images by using mathematical and computational techniques. Which includes linear algebra, calculus, probability theory, and machine learning. 
 
+### Steps involved in DIP
 
+  * Enhancement
+    > kafi vaivrv sdvsv dvudrv dvjndsfifrf vjv
+
+  * Restoration
+     >
+
+  * Segmentation
+     >
+
+  * Compression
+     >
+
+  * Object Recognition
+     >
