@@ -5,6 +5,7 @@ a set of numerical values that can be stored and processed by a computer. Follow
 
 ## RGB (Red, Green, Blue):
 
+  * RGB is more intuitive and closely related to the way that human vision perceives color.
   * The most used color space and represents color as a combination of red, green, and blue values.
   * Used in computer displays, cameras, and digital devices.
   * Red - (255, 0, 0), Green - (0, 255, 0), Blue - (0, 0, 255), White - (255, 255, 255), Black - (0, 0, 0)
@@ -14,9 +15,15 @@ a set of numerical values that can be stored and processed by a computer. Follow
 
 ## CMYK (Cyan, Magenta, Yellow, Key/Black):
 
+![alt text](https://learn.microsoft.com/en-us/windows/win32/wcs/images/cmyclrs1.png)
+
+  * It is a substractive color model, which means colors are created by subtracting or absorbing certain wavelengths of light from white light.
   * Represents colors as a combination of Cyan, Magenta, Yellow, and Black values.
+  * The colors are created by varying the amounts of ink or toner of each color - Cyan, Magenta, Yellow, and Black.
+  * Cyan, Magenta, and Yellow are used to create a wide range of colors, but are not related to produce the deep, rich black color that is often desired.
+  * Hence, it requires a separate black ink or toner is used, represented by the 'K' in CMYK, which stands for 'Key' because it is used as the key plate in the printing process.
   * Used to create the four-color printing process.
-  * Primarly used in printing.
+  * Primarly used in printing. However, because the color model in color inacuracies or variations between different printing methods or devices.
 
 ## HSV (Hue, Saturation, Value):
 
@@ -53,3 +60,11 @@ a set of numerical values that can be stored and processed by a computer. Follow
   * Value often represented as percentage or a numerical value that indicates the brightness of a color, with 0% representing black and 100% representing white. 
   * Increasing the value of a color can make it appear lighter and brighter, while decreasing the value can make it appear darker and less intense. Which is in the range [0 (black), 1 (white)].
   * Used to create the four-color printing process and also used in graphic design, art and photography. 
+
+## YUV (Luma, Chrominance Blue, Chrominace Red):
+
+  * The Y component represents the brightness of the image. Alone used to represent Black and White images or it provides the luminance information in color images. 
+  * The U and V components represent the Chrominance or color information.
+  * These U and V components are also known as the color difference signals because they represent the difference betweenn the image.
+  * Mostly used in video compression formats, such as MPEG and H.264, because it allows for efficient compression of the color information by separating it from the luminance information. 
+  *  
