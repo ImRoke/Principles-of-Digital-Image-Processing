@@ -1,6 +1,8 @@
 import cv2
 import matplotlib.pyplot as plt
 
+# pip install opencv-python matplotlib
+
 
 class ImageBlur:
     """
