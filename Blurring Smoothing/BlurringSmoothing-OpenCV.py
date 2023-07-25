@@ -43,7 +43,7 @@ class ImageBlur:
 
         # Plotting all the default methods results for comparision
         titles = ["Average Blur", "Gaussian Blur", "Median Blur", "Bilateral Blur"]
-        images = [blr, gaus_blr, mdn_blr, blt_blr]
+        images = [avg_blr, gaus_blr, mdn_blr, bilat_blr]
         
         plt.figure(figsize=(25,15))
         for i in range(4):
