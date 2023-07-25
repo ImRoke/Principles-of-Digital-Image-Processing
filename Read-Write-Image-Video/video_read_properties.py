@@ -14,6 +14,20 @@ def read_video(video_path):
     fps = cap.get(cv2.CAP_PROP_FPS)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
+
+    # Major capture properties
+    # print(f"FRAME_WIDTH :   '{cap.get(cv2.CAP_PROP_FRAME_WIDTH)}'")
+    # print(f"FRAME_HEIGHT :  '{cap.get(cv2.CAP_PROP_FRAME_HEIGHT)}'")
+    # print(f"FPS :           '{cap.get(cv2.CAP_PROP_FPS)}'")
+    # print(f"POS_MSEC :      '{cap.get(cv2.CAP_PROP_POS_MSEC)}'")
+    # print(f"FRAME_COUNT :   '{cap.get(cv2.CAP_PROP_FRAME_COUNT)}'")
+    # print(f"BRIGHTNESS :    '{cap.get(cv2.CAP_PROP_BRIGHTNESS)}'")
+    # print(f"CONTRAST :      '{cap.get(cv2.CAP_PROP_CONTRAST)}'")
+    # print(f"SATURATION :    '{cap.get(cv2.CAP_PROP_SATURATION)}'")
+    # print(f"HUE :           '{cap.get(cv2.CAP_PROP_HUE)}'")
+    # print(f"GAIN :          '{cap.get(cv2.CAP_PROP_GAIN)}'")
+    # print(f"RGB :           '{cap.get(cv2.CAP_PROP_CONVERT_RGB)}'")
+
     print(f"Video Path: {video_path}")
     print(f"Frame Width: {frame_width}")
     print(f"Frame Height: {frame_height}")
