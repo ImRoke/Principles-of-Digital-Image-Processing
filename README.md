@@ -35,4 +35,4 @@ The primary step will be the acquisition of image adn then analysis part comes i
 
 ## Go through the following topics for better understanding of the mostly used principles:
 
-[Image Blurring and Smoothing](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/ImageBlurring/)
+[Image Blurring and Smoothing](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageBlurring)
