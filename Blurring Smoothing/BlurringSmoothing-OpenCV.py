@@ -9,7 +9,7 @@ class ImageBlur:
     
     def __init__(self, image_path):
         """
-        Initializes an instance of the ImageBlurrer class.
+        Initializes an instance of the ImageBlur class.
         
         Parameters:
             image_path (str): The path of the input image.
@@ -56,7 +56,7 @@ class ImageBlur:
         
     def main(self):
         """
-        The main method of the ImageBlurrer class that applies blur methods to the input image
+        The main method of the ImageBlur class that applies blur methods to the input image
         and plots the results.
         
         Parameters:
