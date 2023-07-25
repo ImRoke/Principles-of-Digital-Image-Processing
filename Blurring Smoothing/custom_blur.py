@@ -42,7 +42,7 @@ class Blur:
 
         return blurred_image
 
-    def custom_bilateral_filter(self, d, sigma_color, sigma_space):
+    def custom_bilateral_blur(self, d, sigma_color, sigma_space):
         h, w, c = self.image.shape
         out = np.zeros_like(self.image)
 
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     elif args.blur == 'gaussian':
         blurred_image = blur.custom_gaussian_blur(tuple(args.kernel_size), args.sigma)
     elif args.blur == 'bilateral':
-        blurred_image = blur.custom_bilateral_filter(d=args.kernel_size[0], sigma_color=args.sigma, sigma_space=args.sigma)
+        blurred_image = blur.custom_bilateral_blur(d=args.kernel_size[0], sigma_color=args.sigma, sigma_space=args.sigma)
     elif args.blur == 'median':
         blurred_image = blur.custom_median_blur(tuple(args.kernel_size))
     else:
