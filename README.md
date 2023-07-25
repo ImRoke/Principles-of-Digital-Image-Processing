@@ -32,3 +32,7 @@ The primary step will be the acquisition of image adn then analysis part comes i
 
   * Compression
      > Image visual quality will be preserved by removing redundant or irrelevant informatoin while reducing the file size.
+
+## Go through the following topics for better understanding of the mostly used principles:
+
+[Image Blurring and Smoothing](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/ImageBlurring/)
