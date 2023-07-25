@@ -67,4 +67,3 @@ a set of numerical values that can be stored and processed by a computer. Follow
   * The U and V components represent the Chrominance or color information.
   * These U and V components are also known as the color difference signals because they represent the difference betweenn the image.
   * Mostly used in video compression formats, such as MPEG and H.264, because it allows for efficient compression of the color information by separating it from the luminance information. 
-  *  
