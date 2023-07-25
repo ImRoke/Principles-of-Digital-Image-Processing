@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import argparse
 
+# pip install opencv-python matplotlib
+
 class Blur:
     def __init__(self, image_path):
         self.image_path = image_path
