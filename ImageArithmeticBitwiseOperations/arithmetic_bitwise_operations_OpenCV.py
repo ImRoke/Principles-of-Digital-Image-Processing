@@ -47,20 +47,48 @@ class CustomArithmeticBitwise:
         plt.savefig('arithmetic_bitwise_operations_OpenCV.png')
         plt.show()
 
+    def perform_operation(self, operation):
+        if operation == 'add':
+            return self.add_images()
+        elif operation == 'subtract':
+            return self.subtract_images()
+        elif operation == 'weighted':
+            return self.weighted_addition()
+        elif operation == 'multiply':
+            return self.multiply_images()
+        elif operation == 'and':
+            return self.bitwise_and()
+        elif operation == 'or':
+            return self.bitwise_or()
+        elif operation == 'xor':
+            return self.bitwise_xor()
+        elif operation == 'not':
+            return self.bitwise_not()
+        else:
+            raise ValueError(f"Invalid operation: {operation}")
+
+
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Custom Arithmetic and Bitwise Operations on Images')
     parser.add_argument('img1_path', type=str, help='Path to the first input image')
     parser.add_argument('img2_path', type=str, help='Path to the second input image')
+    parser.add_argument('--operation', choices=['add', 'subtract', 'weighted', 'multiply', 'and', 'or', 'xor', 'not'], 
+                        default='add', help='Operation to perform on the images')
     return parser.parse_args()
 
 if __name__ == "__main__":
     args = parse_arguments()
 
     custom_arith_bitwise = CustomArithmeticBitwise(args.img1_path, args.img2_path)
-    custom_arith_bitwise.plot_results()
+    result_image = custom_arith_bitwise.perform_operation(args.operation)
+
+    plt.imshow(cv2.cvtColor(result_image, cv2.COLOR_BGR2RGB))
+    plt.title(f"{args.operation.capitalize()} of Images")
+    plt.show()
 
 
 # Usage
 
-# python arithmetic_bitwise_operations_OpenCV.py image1.jpg image2.jpg
+# python arithmetic_bitwise_operations_OpenCV.py image1.jpg image2.jpg --operation add
 
