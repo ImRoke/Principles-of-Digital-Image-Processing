@@ -53,6 +53,7 @@ class ImageBlur:
             plt.imshow(images[i])
             plt.title(titles[i], fontsize=20)
         plt.tight_layout()
+        plt.savefig('blurred_image-OpenCV.png')
         plt.show()
         
         
@@ -72,7 +73,7 @@ class ImageBlur:
 
         
 if __name__ == "__main__":
-    image_path = 'goku3.jpeg'
+    image_path = 'place your image here'
     ib = ImageBlur(image_path)
     ib.main()
 
