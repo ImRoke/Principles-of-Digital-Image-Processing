@@ -1,11 +1,12 @@
-import cv2 as cv
+import cv2
+import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 
 class CustomColorSpace:
     def __init__(self, image_path):
         self.image_path = image_path
-        self.img = cv.imread(image_path)
+        self.img = cv2.imread(image_path)
 
     def convert_to_rgb(self):
         R = self.img[..., 2]
@@ -48,8 +49,9 @@ class CustomColorSpace:
         return self._merge_channels(Y, Cr, Cb)
 
     def convert_to_gray(self):
-        yuv = self.convert_to_yuv()
-        return yuv[..., 0]
+        R, G, B = self.img[..., 2], self.img[..., 1], self.img[..., 0]
+        gray = 0.299 * R + 0.587 * G + 0.114 * B
+        return gray.astype(np.uint8)
 
     def _merge_channels(self, *channels):
         result = channels[0].copy()
