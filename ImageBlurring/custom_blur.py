@@ -1,122 +1,136 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 import argparse
 
-# pip install opencv-python matplotlib
-
-class Blur:
+class CustomBlur:
     def __init__(self, image_path):
         self.image_path = image_path
         self.image = cv2.imread(image_path)
-        self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
 
-    @staticmethod
-    def gauss_kernel(filter_size, sigma=1):
-        filter_size = int(filter_size) // 2
-        hgt, wdt = np.mgrid[-filter_size:filter_size+1, -filter_size:filter_size+1]
-        gaus_const = 1 / (2.0 * np.pi * sigma**2)
-        gauss = np.exp(-((hgt**2 + wdt**2) / (2.0*sigma**2))) * gaus_const
-        return gauss
+    def show_image(self, title="Image"):
+        plt.imshow(cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB))
+        plt.title(title)
+        plt.axis('off')
+        plt.show()
 
-    def custom_average_blur(self, kernel_size):
-        h, w, c = self.image.shape
-        kernel = np.ones(kernel_size) / (kernel_size[0] * kernel_size[1])
-        blurred_image = np.zeros_like(self.image)
+    def apply_blur(self, blur_type, **kwargs):
+        if blur_type == 'median':
+            self.custom_median_blur(**kwargs)
+        elif blur_type == 'gaussian':
+            self.custom_gaussian_blur(**kwargs)
+        elif blur_type == 'average':
+            self.custom_average_blur(**kwargs)
+        elif blur_type == 'bilateral':
+            self.custom_bilateral_blur(**kwargs)
 
-        kh, kw = kernel_size
-        for row in range(h - kh + 1):
-            for col in range(w - kw + 1):
-                for ch in range(c):
-                    blurred_image[row, col, ch] = np.sum(self.image[row:row + kh, col:col + kw, ch] * kernel)
+    def custom_median_blur(self, kernel_size=3):
+        
+        pad = kernel_size // 2
+        height, width, channels = self.image.shape
+        result = np.zeros_like(self.image)
 
-        return blurred_image
+        for i in range(pad, height - pad):
+            for j in range(pad, width - pad):
+                for k in range(channels):
+                    window = self.image[i - pad : i + pad + 1, j - pad : j + pad + 1, k]
+                    result[i, j, k] = np.median(window)
 
-    def custom_gaussian_blur(self, kernel_size, sigma):
-        h, w, c = self.image.shape
-        kernel = self.gauss_kernel(kernel_size, sigma)
-        blurred_image = np.zeros_like(self.image)
+        self.image = result
 
-        kh, kw = kernel_size
-        for row in range(h - kh + 1):
-            for col in range(w - kw + 1):
-                for ch in range(c):
-                    blurred_image[row, col, ch] = np.sum(self.image[row:row + kh, col:col + kw, ch] * kernel)
+    def custom_gaussian_blur(self, kernel_size=(5, 5), sigma=(1.0, 1.0)):
+        
+        pad_x = kernel_size[0] // 2
+        pad_y = kernel_size[1] // 2
+        height, width, channels = self.image.shape
+        result = np.zeros_like(self.image)
 
-        return blurred_image
+        for i in range(pad_x, height - pad_x):
+            for j in range(pad_y, width - pad_y):
+                for k in range(channels):
+                    window = self.image[i - pad_x : i + pad_x + 1, j - pad_y : j + pad_y + 1, k]
+                    kernel_x = np.exp(-np.linspace(-pad_x, pad_x, kernel_size[0])**2 / (2 * sigma[0]**2))
+                    kernel_y = np.exp(-np.linspace(-pad_y, pad_y, kernel_size[1])**2 / (2 * sigma[1]**2))
+                    kernel = np.outer(kernel_x, kernel_y)
+                    result[i, j, k] = np.sum(window * kernel) / np.sum(kernel)
 
-    def custom_bilateral_blur(self, d, sigma_color, sigma_space):
-        h, w, c = self.image.shape
-        out = np.zeros_like(self.image)
+        self.image = result
 
-        def spatial_filter(x, y):
-            return np.exp(-(x ** 2 + y ** 2) / (2 * sigma_space ** 2))
+    def custom_average_blur(self, kernel_size=(5, 5)):
+       
+        pad_x = kernel_size[0] // 2
+        pad_y = kernel_size[1] // 2
+        height, width, channels = self.image.shape
+        result = np.zeros_like(self.image)
 
-        space_filter = np.zeros((d, d))
-        center = d // 2
-        for i in range(d):
-            for j in range(d):
-                x = i - center
-                y = j - center
-                space_filter[i, j] = spatial_filter(x, y)
+        for i in range(pad_x, height - pad_x):
+            for j in range(pad_y, width - pad_y):
+                for k in range(channels):
+                    window = self.image[i - pad_x : i + pad_x + 1, j - pad_y : j + pad_y + 1, k]
+                    result[i, j, k] = np.mean(window)
 
-        for i in range(h):
-            for j in range(w):
-                pixel = self.image[i, j]
-                intensity_filter = np.zeros((d, d))
-                for k in range(d):
-                    for l in range(d):
-                        x = i + k - center
-                        y = j + l - center
-                        if x < 0 or y < 0 or x >= h or y >= w:
-                            intensity_filter[k, l] = 0
-                        else:
-                            intensity_filter[k, l] = np.exp(-np.sum((pixel - self.image[x, y]) ** 2) / (2 * sigma_color ** 2))
-                filter = intensity_filter * space_filter
-                total_weight = np.sum(filter)
-                out[i, j] = np.sum(self.image * filter[..., np.newaxis], axis=(0, 1)) / total_weight
+        self.image = result
 
-        return out
+    def custom_bilateral_blur(self, d=9, sigmaColor=75, sigmaSpace=75):
+        
+        pad = d // 2
+        height, width, channels = self.image.shape
+        result = np.zeros_like(self.image)
 
-    def custom_median_blur(self, kernel_size):
-        h, w, c = self.image.shape
-        kernel = np.ones(kernel_size)
-        blurred_image = np.zeros_like(self.image)
+        for i in range(height):
+            for j in range(width):
+                for k in range(channels):
+                    w = 0
+                    val = 0
 
-        kh, kw = kernel_size
-        for row in range(h - kh + 1):
-            for col in range(w - kw + 1):
-                for ch in range(c):
-                    blurred_image[row, col, ch] = np.median(self.image[row:row + kh, col:col + kw, ch] * kernel)
+                    for p in range(max(0, i - pad), min(height, i + pad + 1)):
+                        for q in range(max(0, j - pad), min(width, j + pad + 1)):
+                            dist_color = np.linalg.norm(self.image[p, q] - self.image[i, j])
+                            dist_space = np.linalg.norm([p - i, q - j])
+                            weight = np.exp(-dist_color**2 / (2 * sigmaColor**2) - dist_space**2 / (2 * sigmaSpace**2))
+                            val += self.image[p, q, k] * weight
+                            w += weight
 
-        return blurred_image
+                    result[i, j, k] = val / w
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Apply custom blur techniques to an image')
-    parser.add_argument('image_path', type=str, help='Path to input image')
-    parser.add_argument('--blur', choices=['average', 'gaussian', 'bilateral', 'median'], default='average',
-                        help='Blur technique to apply (default: average)')
-    parser.add_argument('--kernel_size', type=int, nargs=2, default=[5, 5], help='Kernel size for blur (default: 5 5)')
-    parser.add_argument('--sigma', type=float, default=1, help='Sigma value for Gaussian blur (default: 1)')
-    args = parser.parse_args()
+        self.image = result
 
-    blur = Blur(args.image_path)
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Custom Image Blurring')
+    parser.add_argument('image_path', type=str, help='Path to the input image')
+    parser.add_argument('--blur', choices=['median', 'gaussian', 'average', 'bilateral'], default='median',
+                        help='Blur technique to apply (median, gaussian, average, bilateral)')
+    parser.add_argument('--median', type=int, default=3, help='Kernel size for median blur')
+    parser.add_argument('--gaussian', nargs=2, type=float, default=[5, 1.0],
+                        help='Kernel size and sigma for Gaussian blur')
+    parser.add_argument('--average', nargs=2, type=int, default=[5, 5], help='Kernel size for average blur')
+    parser.add_argument('--bilateral', nargs=3, type=int, default=[9, 75, 75],
+                        help='d, sigmaColor, and sigmaSpace for bilateral blur')
+    return parser.parse_args()
 
-    if args.blur == 'average':
-        blurred_image = blur.custom_average_blur(tuple(args.kernel_size))
-    elif args.blur == 'gaussian':
-        blurred_image = blur.custom_gaussian_blur(tuple(args.kernel_size), args.sigma)
-    elif args.blur == 'bilateral':
-        blurred_image = blur.custom_bilateral_blur(d=args.kernel_size[0], sigma_color=args.sigma, sigma_space=args.sigma)
-    elif args.blur == 'median':
-        blurred_image = blur.custom_median_blur(tuple(args.kernel_size))
-    else:
-        raise ValueError('Invalid blur technique.')
+if __name__ == "__main__":
+    args = parse_arguments()
 
-    cv2.imshow('Blurred Image', blurred_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    custom_blur = CustomBlur(args.image_path)
+    custom_blur.show_image("Original Image")
+
+    # Apply the selected blur technique
+    blur_args = {
+        'median': {'kernel_size': args.median},
+        'gaussian': {'kernel_size': tuple(map(int, args.gaussian)), 'sigma': tuple(map(float, args.gaussian))},
+        'average': {'kernel_size': tuple(map(int, args.average))},
+        'bilateral': {'d': args.bilateral[0], 'sigmaColor': args.bilateral[1], 'sigmaSpace': args.bilateral[2]}
+    }
+    custom_blur.apply_blur(args.blur, **blur_args[args.blur])
+
+    # Show the blurred image
+    custom_blur.show_image("Blurred Image")
+
+    # Save the blurred image to a file (change 'blurred_image.jpg' to the desired filename)
+    cv2.imwrite('blurred_image.jpg', custom_blur.image)
 
 
-# Usage 
+# Usage
 
-python custom_blur.py gargantua.png --blur gaussian --kernel_size 9 9 --sigma 2.5
+# python custom_blur.py image.jpeg --blur gaussian --gaussian 5 1
+# python custom_blur.py image.jpeg --blur median --median 5
