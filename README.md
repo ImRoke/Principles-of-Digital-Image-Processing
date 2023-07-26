@@ -38,3 +38,5 @@ The primary step will be the acquisition of image adn then analysis part comes i
 [Reading an Image and Video using OpenCV](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/Read-Write-Image-Video)
 
 [Image Blurring and Smoothing](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageBlurring)
+
+[Image Color Spaces](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageColorSpaces)
