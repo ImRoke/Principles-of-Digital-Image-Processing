@@ -32,7 +32,7 @@ class ImageBlur:
             None
         """
         # Applying blur or average blur to image
-        blr = cv2.blur(self.im, (15, 15))
+        avg_blr = cv2.blur(self.im, (15, 15))
 
         # Applying gaussian blur to image
         gaus_blr = cv2.GaussianBlur(self.im, (15, 15), 0)
@@ -41,7 +41,7 @@ class ImageBlur:
         mdn_blr = cv2.medianBlur(self.im, 15)
 
         # Applying bilateral blur to image
-        blt_blr = cv2.bilateralFilter(self.im, 20, 175, 175)
+        bilat_blr = cv2.bilateralFilter(self.im, 20, 175, 175)
 
         # Plotting all the default methods results for comparision
         titles = ["Average Blur", "Gaussian Blur", "Median Blur", "Bilateral Blur"]
