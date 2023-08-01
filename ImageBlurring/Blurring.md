@@ -13,6 +13,7 @@ In image processing, blurring, also known as smoothing or low-pass filtering, is
  * Maintains Image Aesthetics and Visual Effects
    > Beyond noise reduction, it is commonly used in portrait photography, a shallow depth of field is achieved by blurring the background, keeping the subject in focus, which creates an appealing visual effect.
 
+![alt text](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/blob/main/ImageBlurring/blurred_image_OpenCV.png)
 
 Now, we will focus on different types of blurring namely Gaussian, Average, Median, and Bilateral Blurring.
 
