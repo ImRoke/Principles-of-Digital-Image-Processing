@@ -37,6 +37,25 @@ The primary step will be the acquisition of image adn then analysis part comes i
 
 [Reading an Image and Video using OpenCV](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/Read-Write-Image-Video)
 
+[Image Color Spaces](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageColorSpaces)
+
+[Image Rotation and Flipping](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageRotateFlip)
+
+[Image Manipulation Operations (Arithmetic and Bitwsie)](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageArithmeticBitwiseOperations)
+
 [Image Blurring and Smoothing](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageBlurring)
 
-[Image Color Spaces](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageColorSpaces)
+[Image Histogram and Histogram Equalization](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageHistogram)
+
+[Image Thresholding](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageThresholding)
+
+[Image Template Matching](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageTemplateMatching)
+
+[Image Edge Detection](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageEdgeDetection)
+
+[Image Contour Detection](https://github.com/ImRoke/Principles-of-Digital-Image-Processing-with-OpenCV-Python/tree/main/ImageContourDetection)
+
+
+
+
+
