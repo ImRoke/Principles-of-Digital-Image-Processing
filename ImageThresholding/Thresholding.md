@@ -65,7 +65,7 @@ B(x, y) = 255    if I(x, y) ≥ T(x, y)
 Mean Adaptive Threshold can be calculated as follows:
 
 ```
-T(x, y) = mean(src(x - blockSize/2 : x + blockSize/2, y - blockSize/2 : y + blockSize/2)) - C
+T(x, y) = mean(src(x - block_size/2 : x + block_size/2, y - block_size/2 : y + block_size/2)) - C
 
 C is subtracted from the weighted sum to adjust the threshold level.
 
@@ -83,7 +83,7 @@ B(x, y) = { 0,           if T(x, y) > 0
 Gaussian Adaptive Threshold can be calculated as follows:
 
 ```
-T(x, y) = weighted_sum(src(x - blockSize/2 : x + blockSize/2, y - blockSize/2 : y + blockSize/2), Gaussian_window) - C
+T(x, y) = weighted_sum(src(x - block_size/2 : x + block_size/2, y - block_size/2 : y + block_size/2), Gaussian_window) - C
 
 C is subtracted from the weighted sum to adjust the threshold level.
 
