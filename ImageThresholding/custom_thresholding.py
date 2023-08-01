@@ -105,20 +105,29 @@ class CustomImageThresholding:
 
         return thresholded
 
-    def adaptive_gaussian_threshold(self, image):
-        thresholded = np.zeros_like(image)
-        h, w = image.shape
 
-        for y in range(0, h, self.block_size):
-            for x in range(0, w, self.block_size):
-                block = image[y:y+self.block_size, x:x+self.block_size]
-                block_mean = np.mean(block)
-                block_std = np.std(block)
-                threshold = block_mean + self.c * block_std
-                thresholded[y:y+self.block_size, x:x+self.block_size] = (block > threshold) * 255
 
-        return thresholded
-
+    def adaptive_gaussian_threshold(self, image):                                                              # def adaptive_gaussian_threshold(self, image):
+        thresholded = np.zeros_like(image)                                                                     # thresholded = np.zeros_like(image)
+        h, w = image.shape                                                                                     # h, w = image.shape
+                                                                                                               # for y in range(0, h, self.block_size):
+        # Generate the Gaussian kernel                                                                         # for x in range(0, w, self.block_size):
+        gaussian_kernel = self._generate_gaussian_kernel()                                                     # block = image[y:y+self.block_size, x:x+self.block_size]
+                                                                                                               # block = image[y:y+self.block_size, x:x+self.block_size]
+        for y in range(0, h, self.block_size):                                                                 # block_mean = np.mean(block)                                                
+            for x in range(0, w, self.block_size):                                                             # block_std = np.std(block)
+                block = image[y:y+self.block_size, x:x+self.block_size]                                        # threshold = block_mean + self.c * block_std
+                threshold = np.sum(block * gaussian_kernel) - self.c                                           # thresholded[y:y+self.block_size, x:x+self.block_size] = (block > threshold) * 255
+                thresholded[y:y+self.block_size, x:x+self.block_size] = (block > threshold) * 255              # return thresholded
+                                                                                                               
+        return thresholded                                                                                     
+                                                                                                              
+    def _generate_gaussian_kernel(self):
+        # Generate a 2D Gaussian kernel based on block_size and sigma                                          
+        x, y = np.meshgrid(np.arange(-self.block_size // 2 + 1, self.block_size // 2 + 1),
+                           np.arange(-self.block_size // 2 + 1, self.block_size // 2 + 1))
+        gaussian_kernel = np.exp(-(x**2 + y**2) / (2 * (self.block_size // 5)**2))
+        return gaussian_kernel / np.sum(gaussian_kernel)
 
 
 def plot_thresholding_results(image_path, technique, block_size=11, c=2, adaptive=False):
