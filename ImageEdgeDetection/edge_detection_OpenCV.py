@@ -23,7 +23,7 @@ class EdgeDetectionOpenCV:
             raise ValueError("Invalid edge detection technique name. Please choose from the available techniques.")
 
     def canny_edge_detection(self, image):
-        return cv2.Canny(image, 100, 200)
+        return cv2.Canny(cv2.GaussianBlur(image, (5, 5), 1), 100, 200)  # cv2.Canny(image, 100, 200) not preferred
 
     def laplacian_edge_detection(self, image):
         return cv2.Laplacian(image, cv2.CV_64F)
